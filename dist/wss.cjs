@@ -1,0 +1,1 @@
+"use strict";var s=require("nanoid"),e=require("./session/map.cjs");exports.createWs=()=>({session:{},sessionRegister(i){const o="wss"+s.nanoid(20);this.session.session_id=o,e.createSession(o,i)},sessionRemove(){e.removeSession(this.session.session_id??""),this.session.session_id=void 0,this.session.session_sub=void 0}});

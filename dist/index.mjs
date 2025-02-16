@@ -1,1 +1,1 @@
-import{nanoid as s}from"nanoid";import{removeSession as i,createSession as o}from"./session/map.mjs";const e=()=>({session:{},sessionRegister(i){const e="wss"+s(20);this.session.session_id=e,o(e,i)},sessionRemove(){i(this.session.session_id??""),this.session.session_id=void 0,this.session.session_sub=void 0}});export{e as createWs};
+export{createWs}from"./wss.mjs";

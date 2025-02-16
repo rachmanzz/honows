@@ -1,3 +1,3 @@
 export { createWs } from "./wss";
-export { HonoWSEvent } from "./interfaces/hono-event";
-export { WSSession } from "./interfaces/ws-session";
+export type { HonoWSEvent } from "./interfaces/hono-event";
+export type { WSSession } from "./interfaces/ws-session";
