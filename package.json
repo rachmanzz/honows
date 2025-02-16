@@ -18,8 +18,7 @@
     "typescript": "^5.7.3"
   },
   "scripts": {
-    "build": "rollup -c",
-    "postinstall": "yarn build"
+    "build": "rollup -c"
   },
   "license": "MIT"
 }
