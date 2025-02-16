@@ -1,8 +1,9 @@
 import type { WSEvents, WSContext } from "hono/ws";
-import { WSSession } from "./ws-session";
 export type HonoWSEvent = WSEvents<unknown> & {
-    session: WSSession;
+    sub_id?: string;
     sessionRegister: (ws: WSContext<unknown>) => void;
     sessionRemove: (sessionID: string) => void;
+    sessionID: () => string | undefined;
+    getWS: () => WSContext<unknown> | undefined;
 };
 //# sourceMappingURL=hono-event.d.ts.map
