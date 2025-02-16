@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*" : ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}
