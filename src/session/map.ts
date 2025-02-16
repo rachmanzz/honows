@@ -9,3 +9,7 @@ export const createSession = (sessionID: string, ws: WSContext<unknown>) => {
 export const removeSession = (sessionID: string) => {
   sessions.delete(sessionID)
 }
+
+export const getWs = (sessionID: string) => {
+  return sessions.get(sessionID)
+}
