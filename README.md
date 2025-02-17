@@ -13,7 +13,7 @@ HonoWS is a WebSocket library based on [Hono](https://hono.dev) that provides **
 
 ## 🚀 Installation
 ```sh
-npm install https://github.com/rachmanzz/honows
+bun add https://github.com/rachmanzz/honows
 ```
 
 ## 📌 Usage
