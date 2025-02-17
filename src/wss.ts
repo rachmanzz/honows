@@ -56,7 +56,7 @@ export const createWs = <T extends unknown>(): HonoWSEvent<T> => ({
       channelsRegistered.get(this)?.delete(channelName);
     }
   },
-  unsubscribeAll() {
+  unsubscribeAll(this: HonoWSEvent<T>) {
     const sessionID = this.sessionID();
     if (sessionID && channelsRegistered.has(this)) {
       channelsRegistered.get(this)?.forEach((it) => {
@@ -65,6 +65,9 @@ export const createWs = <T extends unknown>(): HonoWSEvent<T> => ({
 
       channelsRegistered.get(this)?.clear();
     }
+  },
+  channels(this: HonoWSEvent<T>) {
+    return channelsRegistered.get(this)
   },
   channelSend(this: HonoWSEvent<T>, channelName, data) {
     const sessionID = this.sessionID();
