@@ -10,6 +10,7 @@ import {
 } from "./session/channels";
 
 const sessionMap = new WeakMap<WeakKey, string>();
+const channelsRegistered = new WeakMap<WeakKey, Set<string>>();
 // this sould create inside "upgradeWebSocket", so the object not shareable
 export const createWs = <T extends unknown>(): HonoWSEvent<T> => ({
   sessionRegister(this: HonoWSEvent<T>, ws: WSContext<unknown>) {
@@ -41,12 +42,28 @@ export const createWs = <T extends unknown>(): HonoWSEvent<T> => ({
     const sessionID = this.sessionID();
     if (sessionID) {
       addChannelItem(channelName, sessionID);
+
+      if (!channelsRegistered.has(this)) {
+        channelsRegistered.set(this, new Set());
+      }
+      channelsRegistered.get(this)?.add(channelName);
     }
   },
   unsubscribe(this: HonoWSEvent<T>, channelName) {
     const sessionID = this.sessionID();
     if (sessionID) {
       removeChannelItem(channelName, sessionID);
+      channelsRegistered.get(this)?.delete(channelName);
+    }
+  },
+  unsubscribeAll() {
+    const sessionID = this.sessionID();
+    if (sessionID && channelsRegistered.has(this)) {
+      channelsRegistered.get(this)?.forEach((it) => {
+        removeChannelItem(it, sessionID);
+      });
+
+      channelsRegistered.get(this)?.clear();
     }
   },
   channelSend(this: HonoWSEvent<T>, channelName, data) {
