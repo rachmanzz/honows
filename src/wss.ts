@@ -21,7 +21,7 @@ export const createWs = <T extends unknown>(): HonoWSEvent<T> => ({
       createSession(sessionID, ws);
     }
   },
-  sessionRemove(this: HonoWSEvent<T>) {
+  sessionUnregister(this: HonoWSEvent<T>) {
     const sessionID = sessionMap.get(this);
     if (sessionID) {
       removeSession(sessionID);
