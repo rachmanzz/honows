@@ -9,5 +9,6 @@ export type HonoWSEvent<T extends unknown> = WSEvents<T> & {
     unsubscribe: (channelName: string) => void;
     unsubscribeAll: () => void;
     channelSend: (channelName: string, data: string | ArrayBuffer | Uint8Array) => void;
+    channels: () => Set<string> | undefined;
 };
 //# sourceMappingURL=hono-event.d.ts.map
