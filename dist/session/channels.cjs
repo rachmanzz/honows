@@ -1,0 +1,1 @@
+"use strict";const e=new Map;exports.addChannelItem=(t,s)=>{e.has(t)||e.set(t,new Set),e.get(t)?.add(s)},exports.getChannels=t=>e.get(t),exports.hasInChannel=(t,s)=>e.get(t)?.has(s)??!1,exports.removeChannelItem=(t,s)=>{const n=e.get(t);n&&(n.delete(s),0===n.size&&e.delete(t))};

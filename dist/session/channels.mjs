@@ -1,0 +1,1 @@
+const e=new Map,t=(t,s)=>{e.has(t)||e.set(t,new Set),e.get(t)?.add(s)},s=(t,s)=>{const a=e.get(t);a&&(a.delete(s),0===a.size&&e.delete(t))},a=t=>e.get(t),d=(t,s)=>e.get(t)?.has(s)??!1;export{t as addChannelItem,a as getChannels,d as hasInChannel,s as removeChannelItem};
