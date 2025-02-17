@@ -2,11 +2,17 @@ import { HonoWSEvent } from "@/interfaces/hono-event";
 import { WSContext } from "hono/ws";
 import { nanoid } from "nanoid";
 import { createSession, getWs, removeSession } from "./session/map";
+import {
+  addChannelItem,
+  getChannels,
+  hasInChannel,
+  removeChannelItem,
+} from "./session/channels";
 
 const sessionMap = new WeakMap<WeakKey, string>();
 // this sould create inside "upgradeWebSocket", so the object not shareable
-export const createWs = (): HonoWSEvent => ({
-  sessionRegister(this: HonoWSEvent, ws: WSContext<unknown>) {
+export const createWs = <T extends unknown>(): HonoWSEvent<T> => ({
+  sessionRegister(this: HonoWSEvent<T>, ws: WSContext<unknown>) {
     const haSessionID = sessionMap.has(this);
     if (!haSessionID) {
       const sessionID = "wss" + nanoid(20);
@@ -14,21 +20,43 @@ export const createWs = (): HonoWSEvent => ({
       createSession(sessionID, ws);
     }
   },
-  sessionRemove(this: HonoWSEvent) {
+  sessionRemove(this: HonoWSEvent<T>) {
     const sessionID = sessionMap.get(this);
     if (sessionID) {
       removeSession(sessionID);
       sessionMap.delete(this);
     }
   },
-  sessionID(this: HonoWSEvent) {
+  sessionID(this: HonoWSEvent<T>) {
     return sessionMap.get(this);
   },
-  getWS(this: HonoWSEvent) {
+  getWS(this: HonoWSEvent<T>) {
     const sessionID = sessionMap.get(this);
     if (sessionID) {
       return getWs(sessionID);
     }
     return undefined;
+  },
+  subscribe(this: HonoWSEvent<T>, channelName) {
+    const sessionID = this.sessionID();
+    if (sessionID) {
+      addChannelItem(channelName, sessionID);
+    }
+  },
+  unsubscribe(this: HonoWSEvent<T>, channelName) {
+    const sessionID = this.sessionID();
+    if (sessionID) {
+      removeChannelItem(channelName, sessionID);
+    }
+  },
+  channelSend(this: HonoWSEvent<T>, channelName, data) {
+    const sessionID = this.sessionID();
+    if (sessionID && hasInChannel(channelName, sessionID)) {
+      getChannels(channelName)?.forEach((v) => {
+        if (sessionID !== v) {
+          getWs(v)?.send(data);
+        }
+      });
+    }
   },
 });
