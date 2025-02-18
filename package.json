@@ -1,10 +1,11 @@
 {
   "name": "honows",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "./dist",
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "dependencies": {
     "hono": "^4.7.1",
+    "msgpack-lite": "^0.1.26",
     "nanoid": "^5.1.0"
   },
   "devDependencies": {
@@ -12,6 +13,7 @@
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
+    "@types/msgpack-lite": "^0.1.11",
     "@types/node": "^22.13.4",
     "rollup": "^4.34.7",
     "tslib": "^2.8.1",
