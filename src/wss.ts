@@ -1,4 +1,4 @@
-import { HonoWSEvent } from "@/interfaces/hono-event";
+import { HonoWSEvent } from "./interfaces/hono-event";
 import { WSContext } from "hono/ws";
 import { nanoid } from "nanoid";
 import { createSession, getWs, removeSession } from "./session/map";
