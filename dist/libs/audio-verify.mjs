@@ -1,0 +1,1 @@
+import{checkMagicNumber as e}from"./helper.mjs";const r=(r,a)=>{switch(r){case"audio/wav":return e(a,0,[82,73,70,70]);case"audio/mpeg":return e(a,0,[73,68,51]);case"audio/ogg":return e(a,0,[79,103,103,83]);case"audio/mp4":return e(a,4,[102,116,121,112]);default:return!1}};export{r as verifyAudioFormat};

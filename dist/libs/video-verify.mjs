@@ -1,0 +1,1 @@
+import{checkMagicNumber as e}from"./helper.mjs";function r(r,t){switch(r){case"video/mp4":return e(t,4,[102,116,121,112]);case"video/webm":return e(t,0,[26,69,223,163]);case"video/ogg":return e(t,0,[79,103,103,83]);case"video/mpeg":return!!e(t,0,[0,0,1,186])||71===t.getUint8(0)&&71===t.getUint8(188);default:return!1}}export{r as verifyVideoFormat};
