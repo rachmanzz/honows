@@ -1,4 +1,4 @@
-import { ObjectSerial, TypeSerialCapsule } from "../interfaces/serial-message";
+import { TypeSerialCapsule } from "../interfaces/serial-message";
 import msgpack from "msgpack-lite";
 import { verifyAudioFormat } from "./audio-verify";
 import { verifyVideoFormat } from "./video-verify";
