@@ -8,10 +8,7 @@
     "target": "ESNext",
     "module": "ESNext",
     "strict": true,
-    "baseUrl": "./",
-    "paths": {
-      "@/*" : ["./src/*"]
-    }
+    "baseUrl": "./"
   },
   "include": ["src"]
 }
