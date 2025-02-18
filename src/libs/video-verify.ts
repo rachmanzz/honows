@@ -18,7 +18,7 @@ export function verifyVideoFormat(mime: string, view: DataView): boolean {
             if (view.getUint8(0) === 0x47 && view.getUint8(188) === 0x47) {
                 return true;
             }
-            // looping my need
+            // looping may need
             return false;
 
         default:
